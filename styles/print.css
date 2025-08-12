@@ -1,0 +1,84 @@
+/* Print-friendly single-column layout */
+@media print {
+  :root {
+    --text: #000;
+    --muted: #333;
+    --border: #999;
+  }
+
+  body {
+    background: #fff !important;
+    color: var(--text) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 12pt;
+  }
+
+  .app-header, .app-footer, .progress-container, .nav-actions {
+    display: none !important;
+  }
+
+  .form, .step-card, fieldset, legend, .form-grid, .form-field {
+    all: revert;
+  }
+
+  .form {
+    width: 100%;
+    margin: 0;
+  }
+
+  .step-card {
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  fieldset {
+    border: 0;
+    margin: 0 0 16pt 0;
+    padding: 0;
+    page-break-inside: avoid;
+  }
+
+  legend {
+    font-weight: 700;
+    font-size: 16pt;
+    margin: 0 0 8pt 0;
+  }
+
+  .form-grid {
+    display: block;
+  }
+
+  .form-field {
+    break-inside: avoid;
+    margin-bottom: 10pt;
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 4pt;
+  }
+
+  input, select, textarea {
+    border: 0;
+    padding: 0;
+    outline: 0;
+    box-shadow: none !important;
+  }
+
+  /* Show selected values clearly */
+  input, textarea {
+    border-bottom: 1px solid var(--border);
+  }
+
+  select {
+    appearance: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .error-msg {
+    display: none !important;
+  }
+}
