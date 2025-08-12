@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Patient Admission Form</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/print.css" media="print" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-title">Patient Admission</h1>
+    <p class="app-subtitle">Please complete the following steps</p>
+  </header>
+
+  <!-- Progress bar -->
+  <div class="progress-container" aria-label="Form Progress">
+    <div
+      id="progressBar"
+      class="progress-bar"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    ></div>
+    <ol class="progress-steps" aria-hidden="true">
+      <li class="progress-step" data-step="1">Demographics</li>
+      <li class="progress-step" data-step="2">Insurance</li>
+      <li class="progress-step" data-step="3">Medical History</li>
+    </ol>
+  </div>
+
+  <main id="main" class="main" role="main">
+    <form id="admissionForm" class="form" novalidate aria-describedby="formStatus">
+      <div id="formStatus" class="sr-only" aria-live="polite"></div>
+
+      <!-- Step 1: Demographics -->
+      <section
+        class="step-card active"
+        data-step="0"
+        aria-labelledby="legend-demographics"
+        aria-hidden="false"
+      >
+        <fieldset>
+          <legend id="legend-demographics">Demographics</legend>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="fullName">Full name</label>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="error-fullName"
+              />
+              <span id="error-fullName" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="dob">Date of birth</label>
+              <input
+                id="dob"
+                name="dob"
+                type="date"
+                required
+                aria-required="true"
+                aria-describedby="error-dob"
+              />
+              <span id="error-dob" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="gender">Gender</label>
+              <select
+                id="gender"
+                name="gender"
+                required
+                aria-required="true"
+                aria-describedby="error-gender"
+              >
+                <option value="" selected disabled>Select...</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="nonbinary">Non-binary</option>
+                <option value="prefer-not">Prefer not to say</option>
+                <option value="other">Other</option>
+              </select>
+              <span id="error-gender" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                placeholder="+383 44 123 456"
+                pattern="^[+()0-9\s-]{7,20}$"
+                required
+                aria-required="true"
+                aria-describedby="error-phone"
+              />
+              <span id="error-phone" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="error-email"
+              />
+              <span id="error-email" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="address1">Address line 1</label>
+              <input
+                id="address1"
+                name="address1"
+                type="text"
+                autocomplete="address-line1"
+                required
+                aria-required="true"
+                aria-describedby="error-address1"
+              />
+              <span id="error-address1" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="address2">Address line 2</label>
+              <input
+                id="address2"
+                name="address2"
+                type="text"
+                autocomplete="address-line2"
+                aria-describedby="error-address2"
+              />
+              <span id="error-address2" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="city">City</label>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                autocomplete="address-level2"
+                required
+                aria-required="true"
+                aria-describedby="error-city"
+              />
+              <span id="error-city" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="postalCode">Postal code</label>
+              <input
+                id="postalCode"
+                name="postalCode"
+                type="text"
+                inputmode="numeric"
+                pattern="^[A-Za-z0-9-\s]{3,10}$"
+                required
+                aria-required="true"
+                aria-describedby="error-postalCode"
+              />
+              <span id="error-postalCode" class="error-msg" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- Step 2: Insurance -->
+      <section
+        class="step-card"
+        data-step="1"
+        aria-labelledby="legend-insurance"
+        aria-hidden="true"
+      >
+        <fieldset>
+          <legend id="legend-insurance">Insurance</legend>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="provider">Provider</label>
+              <select
+                id="provider"
+                name="provider"
+                required
+                aria-required="true"
+                aria-describedby="error-provider"
+              >
+                <option value="" selected disabled>Select provider...</option>
+                <option value="united">UnitedHealth</option>
+                <option value="aetna">Aetna</option>
+                <option value="cigna">Cigna</option>
+                <option value="bluecross">Blue Cross Blue Shield</option>
+                <option value="kfo">Kosovo Health Insurance Fund</option>
+                <option value="other">Other</option>
+              </select>
+              <span id="error-provider" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="policyNumber">Policy number</label>
+              <input
+                id="policyNumber"
+                name="policyNumber"
+                type="text"
+                placeholder="ABC-1234567"
+                required
+                aria-required="true"
+                aria-describedby="error-policyNumber"
+                data-regex="^[A-Z]{3}-\\d{7}$"
+                data-regex-msg="Use format ABC-1234567 (3 capital letters, dash, 7 digits)."
+              />
+              <span id="error-policyNumber" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="groupNumber">Group number (optional)</label>
+              <input
+                id="groupNumber"
+                name="groupNumber"
+                type="text"
+                aria-describedby="error-groupNumber"
+              />
+              <span id="error-groupNumber" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="primaryInsured">Primary insured’s name</label>
+              <input
+                id="primaryInsured"
+                name="primaryInsured"
+                type="text"
+                required
+                aria-required="true"
+                aria-describedby="error-primaryInsured"
+              />
+              <span id="error-primaryInsured" class="error-msg" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- Step 3: Medical History -->
+      <section
+        class="step-card"
+        data-step="2"
+        aria-labelledby="legend-medical"
+        aria-hidden="true"
+      >
+        <fieldset>
+          <legend id="legend-medical">Medical history</legend>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="allergies">Allergies</label>
+              <select
+                id="allergies"
+                name="allergies"
+                multiple
+                size="4"
+                aria-describedby="error-allergies"
+              >
+                <option value="penicillin">Penicillin</option>
+                <option value="nuts">Nuts</option>
+                <option value="latex">Latex</option>
+                <option value="pollen">Pollen</option>
+                <option value="seafood">Seafood</option>
+                <option value="other">Other</option>
+              </select>
+              <span id="error-allergies" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="medications">Current medications</label>
+              <textarea
+                id="medications"
+                name="medications"
+                rows="3"
+                placeholder="List medication name and dosage"
+                aria-describedby="error-medications"
+              ></textarea>
+              <span id="error-medications" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="pastIllnesses">Past illnesses</label>
+              <textarea
+                id="pastIllnesses"
+                name="pastIllnesses"
+                rows="3"
+                aria-describedby="error-pastIllnesses"
+              ></textarea>
+              <span id="error-pastIllnesses" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="surgeries">Surgeries</label>
+              <textarea
+                id="surgeries"
+                name="surgeries"
+                rows="3"
+                aria-describedby="error-surgeries"
+              ></textarea>
+              <span id="error-surgeries" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-field full">
+              <label for="notes">Additional notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="4"
+                aria-describedby="error-notes"
+              ></textarea>
+              <span id="error-notes" class="error-msg" aria-live="polite"></span>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- Navigation -->
+      <div class="nav-actions" role="group" aria-label="Form navigation">
+        <button
+          type="button"
+          id="backBtn"
+          class="btn btn-secondary"
+          disabled
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          id="nextBtn"
+          class="btn btn-primary"
+          disabled
+        >
+          Next
+        </button>
+        <button
+          type="submit"
+          id="submitBtn"
+          class="btn btn-success"
+          hidden
+          disabled
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="app-footer">
+    <p class="muted">Your information is kept confidential.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="scripts/validation.js" defer></script>
+  <script src="scripts/accessibility.js" defer></script>
+  <script src="scripts/navigation.js" defer></script>
+  <script src="scripts/formSubmission.js" defer></script>
+</body>
+</html>
